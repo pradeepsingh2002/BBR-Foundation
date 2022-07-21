@@ -1,22 +1,14 @@
-
-
 fetch("./posts.json")
-.then(response => {
-
-   if(response.ok){ return response.json();}
-   else{throw new Error("kuch toh hua hai")}
-})
-
-.then(data => {
-    
-  const blogbox=document.querySelector(".blog-box");
-  
-  for(let i=0;i<12;i++){
-    const bloglist=document.createElement("div");
-    bloglist.classList="blog";
-
-
-   const infocard =  `<div class="img">
+  .then(response => {
+    if (response.ok) { return response.json(); }
+    else { throw new Error("kuch toh hua hai") }
+  })
+  .then(data => {
+    const blogbox = document.querySelector(".blog-box");
+    for (let i = 0; i < 12; i++) {
+      const bloglist = document.createElement("div");
+      bloglist.classList = "blog";
+      const infocard = `<div class="img">
     <img src="${data.posts[i].img}" alt="">
     <div class="date">${data.posts[i].datetime}</div>
 </div>
@@ -32,17 +24,13 @@ fetch("./posts.json")
     </div>
     <div class="read">
       <a href="#">Read More..</a></div>`;
+      bloglist.innerHTML = infocard;
+      blogbox.append(bloglist);
+    }
+  })
+  .catch((error) => { alert(error) })
 
 
-
-bloglist.innerHTML=infocard;
-blogbox.append(bloglist);
-
-  }
-})
-.catch((error) => { alert(error) })
-
-    
 
 
 
